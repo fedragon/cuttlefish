@@ -4,12 +4,12 @@ function __switchenv --on-variable PWD
   switch $PWD/
     case "~/personal/*"
       switchenv_reset_user_path
-      switchenv_unload_ssh_identities
+      switchenv_reset_ssh_identities
       ~/personal/.switchenvrc.fish
 
     case "~/work/*"
       switchenv_reset_user_path
-      switchenv_unload_ssh_identities
+      switchenv_reset_ssh_identities
       ~/work/.switchenvrc.fish
   end
 end

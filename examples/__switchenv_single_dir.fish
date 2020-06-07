@@ -7,6 +7,6 @@ function __switchenv --on-variable PWD
 
     case "*"
       switchenv_reset_user_path
-      switchenv_unload_ssh_identities
+      switchenv_reset_ssh_identities
   end
 end

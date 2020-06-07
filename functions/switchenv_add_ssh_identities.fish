@@ -1,4 +1,4 @@
-function switchenv_load_ssh_identities
+function switchenv_add_ssh_identities
   if test -z "$switchenv_ssh_identities"
     for ssh_identity in $argv
       if test -n "$ssh_identity"

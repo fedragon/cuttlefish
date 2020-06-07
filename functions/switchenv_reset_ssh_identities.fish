@@ -1,4 +1,4 @@
-function switchenv_unload_ssh_identities
+function switchenv_reset_ssh_identities
   if test -n "$switchenv_ssh_identities"
     for ssh_identity in $switchenv_ssh_identities
       if test -n "$ssh_identity"

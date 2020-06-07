@@ -1,17 +1,19 @@
 # fish-switchenv
 
-Switch environment according to current working directory. Inspired by [direnv](https://direnv.net/) but implemented solely for [fish shell](https://fishshell.com) and not limited to environment variables. Created in order to refresh/expand my fish scripting.
+Switch environment according to current working directory. Inspired by [direnv](https://direnv.net/) but implemented solely for [fish shell](https://fishshell.com) and not limited to environment variables. Pet project created in order to improve my fish scripting skills.
 
 ## Features
 
-- load ssh identities according to current working directory
-- append elements to user paths according to current working directory
+Enable user to perform the following according to current working directory:
+- set global variables
+- add ssh identities to ssh agent
+- append elements to user paths
 
 ## Functions
 
 Here is a list of the provided functions, which can be mixed & matched according to your needs.
 
-### `switchenv_load_ssh_identities`
+### `switchenv_add_ssh_identities`
 
 Adds the provided identity/ies to the ssh agent and stores it/them in the `$switchenv_ssh_identities` universal variable.
 
@@ -20,10 +22,10 @@ Arguments: a non-empty list of absolute paths pointing to the ssh identities to 
 Usage:
 
 ```
-switchenv_load_ssh_identities ~/.ssh/work_id_rsa ~/.ssh/work_cvs_id_rsa
+switchenv_add_ssh_identities ~/.ssh/work_id_rsa ~/.ssh/work_cvs_id_rsa
 ```
 
-### `switchenv_unload_ssh_identities`
+### `switchenv_reset_ssh_identities`
 
 Removes all ssh identities found in `$switchenv_ssh_identities` from the ssh agent and then erases the variable.
 
@@ -32,7 +34,32 @@ Arguments: none
 Usage:
 
 ```
-switchenv_unload_ssh_identities
+switchenv_reset_ssh_identities
+```
+
+### `switchenv_set_user_variable`
+
+Creates a global variable with provided name and value(s) and appends its name to the `$switchenv_user_variables` universal variable.
+
+Arguments: `variable name` `value1` `value2` `valueN`
+
+Usage:
+
+```
+switchenv_set_user_variable my_home /opt/home/bin
+switchenv_set_user_variable foo bar baz
+```
+
+### `switchenv_reset_user_variables`
+
+Erases all variables found in `$switchenv_user_variables` and then the universal variable itself.
+
+Arguments: none
+
+Usage:
+
+```
+switchenv_reset_user_variables
 ```
 
 ### `switchenv_append_to_user_path`:
@@ -77,4 +104,4 @@ functions -c __switchenv switchenv
 
 (example provided in `./config.fish`)
 
-4. Customize `switchenvrc.fish` according to your needs, then copy it to `/my/path/.switchenvrc.fish` (note the starting dot) and make sure it's executable by your user.
+4. Customize `examples/switchenvrc.fish` according to your needs, then copy it to `/my/path/.switchenvrc.fish` (note the starting dot) and make sure it's executable by your user.
