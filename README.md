@@ -4,10 +4,10 @@ Switch environment according to current working directory. Inspired by [direnv](
 
 ## Features
 
-Enable user to perform the following according to current working directory:
+Enables user to configure any combination of the following actions, which will be automatically triggered according to the current working directory:
 - set global variables
 - add ssh identities to ssh agent
-- append elements to user paths
+- append path(s) to `$fish_user_paths`
 
 ## Functions
 
@@ -62,7 +62,7 @@ Usage:
 switchenv_reset_user_variables
 ```
 
-### `switchenv_append_to_user_path`:
+### `switchenv_append_to_user_path`
 
 Adds the provided path(s) to the `$fish_user_paths` universal variable and stores them in the `$switchenv_user_path_additions` universal variable.
 
