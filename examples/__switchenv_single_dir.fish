@@ -4,6 +4,7 @@ function __switchenv --on-variable PWD
   switch $PWD/
     case "~/personal/*"
       ~/personal/.switchenvrc.fish
+      set --universal switchenv_last_visited "~/personal/*"
 
     case "*"
       switchenv_reset_user_path

@@ -6,10 +6,12 @@ function __switchenv --on-variable PWD
       switchenv_reset_user_path
       switchenv_reset_ssh_identities
       ~/personal/.switchenvrc.fish
+      set --universal switchenv_last_visited "~/personal/*"
 
     case "~/work/*"
       switchenv_reset_user_path
       switchenv_reset_ssh_identities
       ~/work/.switchenvrc.fish
+      set --universal switchenv_last_visited "~/work/*"
   end
 end
