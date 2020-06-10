@@ -2,16 +2,22 @@
 # goal: we want to reset the environment whenever we switch from one to the other
 function __switchenv --on-variable PWD
   switch $PWD/
-    case "~/personal/*"
-      switchenv_reset_user_path
-      switchenv_reset_ssh_identities
-      ~/personal/.switchenvrc.fish
-      set --universal switchenv_last_visited "~/personal/*"
+    case "$HOME/personal/*"
+      if test "$HOME/personal" != "$switchenv_last_visited"
+        switchenv_reset_user_path
+        switchenv_reset_ssh_identities
+        $HOME/personal/.switchenvrc.fish
 
-    case "~/work/*"
-      switchenv_reset_user_path
-      switchenv_reset_ssh_identities
-      ~/work/.switchenvrc.fish
-      set --universal switchenv_last_visited "~/work/*"
+        set --universal switchenv_last_visited "$HOME/personal"
+      end
+
+    case "$HOME/work/*"
+      if test "$HOME/work" != "$switchenv_last_visited"
+        switchenv_reset_user_path
+        switchenv_reset_ssh_identities
+        $HOME/work/.switchenvrc.fish
+
+        set --universal switchenv_last_visited "$HOME/work"
+      end
   end
 end
