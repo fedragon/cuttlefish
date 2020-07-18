@@ -1,6 +1,10 @@
 # scenario: we have multiple "special" directories
 # goal: we want to reset the environment whenever we switch from one to the other
 function __switchenv --on-variable PWD
+  if not test -f /tmp/switchenv
+    switchenv_erase
+  end
+
   switch $PWD/
     case "$HOME/personal/*"
       if test "$HOME/personal" != "$switchenv_last_visited"
@@ -20,4 +24,6 @@ function __switchenv --on-variable PWD
         set --universal switchenv_last_visited "$HOME/work"
       end
   end
+
+  touch /tmp/switchenv
 end
