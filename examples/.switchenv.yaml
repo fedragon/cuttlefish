@@ -1,0 +1,12 @@
+git_config:
+  email: foo@bar.com
+  # no other options supported at the moment
+ssh_identities:
+  - ~/.ssh/github_rsa
+  - ~/.ssh/gitlab_rsa
+user_paths: # will be appended to $fish_user_paths
+  - ~/Documents
+  - ~/Desktop
+
+global_variables:
+  FOO: bar # translates to: set --global --export FOO bar
