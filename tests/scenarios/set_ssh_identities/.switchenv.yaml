@@ -1,0 +1,2 @@
+ssh_identities:
+  - ~/.ssh/id_rsa
