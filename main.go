@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -22,8 +23,10 @@ var k = koanf.New(".")
 // ConfigFileName is the name of the config file used by this script
 const ConfigFileName = ".switchenv.yaml"
 
+var sysTmpDir = os.Getenv("TMPDIR")
+
 // TmpFile is the tmp file where the script stores the path to the previous config, if any
-const TmpFile = "/tmp/fish-switchenv-lastvisited"
+var TmpFile = filepath.Join(sysTmpDir, "fish-switchenv-lastvisited")
 
 func main() {
 	config, err := find(os.Getenv("PWD"))
@@ -64,6 +67,11 @@ func find(pwd string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+
+	if !strings.HasPrefix(absPwd, os.Getenv("HOME")) {
+		return "", errors.New("only checking in home dir")
+	}
+
 	fullPath := filepath.Join(absPwd, ConfigFileName)
 
 	_, err = os.Stat(fullPath)
