@@ -1,0 +1,14 @@
+git_config:
+  email: foo@bar.com
+  # no other options supported at the moment
+ssh_identities:
+  # any ssh identity defined here will be loaded into the ssh agent
+  - ~/.ssh/github_rsa
+  - ~/.ssh/gitlab_rsa
+user_paths: 
+  # any path defined here will be appended to $fish_user_paths
+  - ~/Documents
+  - ~/Desktop
+global_variables:
+  # a global, exported variable will be created for any any key/value pair defined here
+  FOO: bar

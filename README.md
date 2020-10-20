@@ -1,6 +1,6 @@
 # fish-switchenv
 
-Switch environment according to current working directory. Concept inspired by [direnv](https://direnv.net/) but not limited to environment variables and targeting only [fish shell](https://fishshell.com).
+Switch environment according to current working directory. Heavily inspired by the amazing [direnv](https://direnv.net/) but not limited to environment variables and only targeting [fish shell](https://fishshell.com).
 
 ## Features
 
@@ -16,13 +16,13 @@ Whenever the directory in which the configuration file resides is visited, its c
 
 The installation requires Go 1.13+.
 
-**Note:** `make install` makes small changes (= append a line) to `~/.config/fish/config.fish`: to be on the safe side, it will create a copy of the original file to `~/.config/fish/config.fish_bck` so that it can be restored at will.
-
 ```
 git clone https://github.com/fedragon/fish-switchenv
 cd fish-switchenv
-make build; and make install
+make
 ```
+
+**Note:** The installation makes small changes (= appending a line) to your `~/.config/fish/config.fish`: before doing so, though, it will copy the original file to `~/.config/fish/config.fish_bck` so that it can be restored at will (see `install` target in `Makefile` for more details).
 
 ## Usage
 

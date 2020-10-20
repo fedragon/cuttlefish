@@ -1,3 +1,7 @@
+all: build install
+
+.PHONY: all
+
 build:
 	go get
 	go build
