@@ -9,10 +9,10 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/fedragon/fish-switchenv/git"
-	"github.com/fedragon/fish-switchenv/globals"
-	"github.com/fedragon/fish-switchenv/paths"
-	"github.com/fedragon/fish-switchenv/ssh"
+	"github.com/fedragon/cuttlefish/git"
+	"github.com/fedragon/cuttlefish/globals"
+	"github.com/fedragon/cuttlefish/paths"
+	"github.com/fedragon/cuttlefish/ssh"
 	"github.com/knadh/koanf"
 	"github.com/knadh/koanf/parsers/yaml"
 	"github.com/knadh/koanf/providers/file"
@@ -21,12 +21,12 @@ import (
 var k = koanf.New(".")
 
 // ConfigFileName is the name of the config file used by this script
-const ConfigFileName = ".switchenv.yaml"
+const ConfigFileName = ".cuttlefish.yaml"
 
 var sysTmpDir = os.Getenv("TMPDIR")
 
 // TmpFile is the tmp file where the script stores the path to the previous config, if any
-var TmpFile = filepath.Join(sysTmpDir, "fish-switchenv-lastvisited")
+var TmpFile = filepath.Join(sysTmpDir, "cuttlefish-lastvisited")
 
 func main() {
 	config, err := find(os.Getenv("PWD"))

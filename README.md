@@ -1,4 +1,6 @@
-# fish-switchenv
+# cuttlefish
+
+![logo](logo.png)
 
 Switch environment according to current working directory. Heavily inspired by the amazing [direnv](https://direnv.net/) but not limited to environment variables and only targeting [fish shell](https://fishshell.com).
 
@@ -10,7 +12,7 @@ Configure any combination of the following in a simple YAML file:
 - global variables
 - git user email address
 
-Whenever you visit a directory containing a `.switchenv.yaml` file, its configuration is applied to your environment.
+Whenever you visit a directory containing a `.cuttlefish.yaml` file, its configuration is applied to your environment.
 
 **Note:** Only subdirectories of the user's home directory are scanned.
 
@@ -21,8 +23,8 @@ Whenever you visit a directory containing a `.switchenv.yaml` file, its configur
 The installation requires Go 1.13+.
 
 ```
-git clone https://github.com/fedragon/fish-switchenv
-cd fish-switchenv
+git clone https://github.com/fedragon/cuttlefish
+cd cuttlefish
 make
 ```
 
@@ -30,7 +32,7 @@ make
 
 ### Configure
 
-Create a `.switchenv.yaml` in every directory where you want to load a different environment. The file should look like this:
+Create a `.cuttlefish.yaml` in every directory where you want to load a different environment. The file should look like this:
 
 ```yaml
 git_config:
@@ -49,12 +51,12 @@ global_variables:
 # ... : ...
 ```
 
-Any combination of the above fields is possible and they're all optional. A complete example is available in `examples/switchenv.yaml`.
+Any combination of the above fields is possible and they're all optional. A complete example is available in `examples/cuttlefish.yaml`.
 
 ### Uninstall
 
 ```
-cd fish-switchenv
+cd cuttlefish
 make uninstall
 ```
 
@@ -71,3 +73,7 @@ make build
 ```
 make test
 ```
+
+## Credits
+
+Icon made by [Freepik]("http://www.freepik.com/").

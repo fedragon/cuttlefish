@@ -1,4 +1,4 @@
-module github.com/fedragon/fish-switchenv
+module github.com/fedragon/cuttlefish
 
 go 1.15
 
