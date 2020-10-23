@@ -76,4 +76,4 @@ make test
 
 ## Credits
 
-Icon made by [Freepik]("http://www.freepik.com/").
+Cuttlefish logo made by [Freepik](http://www.freepik.com/).
