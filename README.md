@@ -16,9 +16,20 @@ Whenever you visit a directory containing a `.cuttlefish.yaml` file, its configu
 
 **Note:** Only subdirectories of the user's home directory are scanned.
 
-## Usage
+## Install
 
-### Install
+**Note:** The script installs itself in your `~/.config/fish/config.fish`: before doing so, though, it will copy the original file to `~/.config/fish/config.fish_bck` so that it can be restored if needed (see `install` target in `Makefile` for more details).
+
+### Option 1: Install released binaries
+
+Grab the binaries from the [releases page](https://github.com/fedragon/cuttlefish/releases), uncompress them and run
+
+```
+cd cuttlefish-darwin64
+make install
+```
+
+### Option 2: Build from sources
 
 The installation requires Go 1.13+.
 
@@ -28,9 +39,7 @@ cd cuttlefish
 make
 ```
 
-**Note:** The script installs itself in your `~/.config/fish/config.fish`: before doing so, though, it will copy the original file to `~/.config/fish/config.fish_bck` so that it can be restored if needed (see `install` target in `Makefile` for more details).
-
-### Configure
+### Usage
 
 Create a `.cuttlefish.yaml` in every directory where you want to load a different environment. The file should look like this:
 
@@ -72,6 +81,12 @@ make build
 
 ```
 make test
+```
+
+### Release
+
+```
+make release
 ```
 
 ## Credits
