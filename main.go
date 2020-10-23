@@ -40,6 +40,11 @@ func main() {
 		previousConfig = []byte("")
 	}
 
+	if string(previousConfig) == config {
+		// nothing to do
+		os.Exit(1)
+	}
+
 	if err := k.Load(file.Provider(config), yaml.Parser()); err != nil {
 		log.Fatal(err)
 	}

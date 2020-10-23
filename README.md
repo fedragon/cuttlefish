@@ -10,7 +10,9 @@ Configure any combination of the following in a simple YAML file:
 - global variables
 - git user email address
 
-Whenever the directory in which the configuration file resides is visited, its contents are parsed and sourced.
+Whenever you visit a directory containing a `.switchenv.yaml` file, its configuration is applied to your environment.
+
+**Note:** Only subdirectories of the user's home directory are scanned.
 
 ## Usage
 
@@ -37,13 +39,13 @@ ssh_identities:
   - ~/.ssh/id_rsa1
   - ~/.ssh/id_rsa2
 # - ...
-user_paths: 
+user_paths:
   - ~/Documents
   - ~/Desktop
 # - ...
 global_variables:
   FOO: bar
-# x: y 
+# x: y
 # ... : ...
 ```
 
