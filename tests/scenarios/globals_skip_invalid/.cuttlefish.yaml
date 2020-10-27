@@ -1,0 +1,4 @@
+global_variables:
+  A: (echo 'A')
+  B: echo 'B1'; and echo 'B2'
+  C: echo 'C1'; or echo 'C2'

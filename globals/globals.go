@@ -2,17 +2,25 @@ package globals
 
 import (
 	"fmt"
+
+	"github.com/fedragon/cuttlefish/common"
 )
 
 func Set(additions map[string]string, deletions []string) []string {
 	cmds := make([]string, 0)
 
 	for _, key := range deletions {
-		cmds = append(cmds, fmt.Sprintf("set --global --erase %v;", key))
+		if err := common.Validate(key); err == nil {
+			cmds = append(cmds, fmt.Sprintf("set --global --erase %v", key))
+		}
 	}
 
 	for key, value := range additions {
-		cmds = append(cmds, fmt.Sprintf("set --global --export %v %v;", key, value))
+		if err := common.Validate(key); err == nil {
+			if err := common.Validate(value); err == nil {
+				cmds = append(cmds, fmt.Sprintf("set --global --export %v %v", key, value))
+			}
+		}
 	}
 
 	return cmds

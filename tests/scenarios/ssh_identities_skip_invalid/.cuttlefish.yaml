@@ -1,0 +1,4 @@
+ssh_identities:
+  - ~/.ssh/id_rsa; and echo 'foo'
+  - (echo 'bar')
+  - (echo 'foo'); and echo 'bar'

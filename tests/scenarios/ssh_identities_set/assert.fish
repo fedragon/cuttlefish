@@ -1,8 +1,8 @@
 #!/usr/bin/fish
 
 if test (ssh-add -L | grep ssh-rsa | wc -l) -eq 1
-  echo '[set_ssh_identities] ok'
+  echo '[ssh_identities_set] ok'
 else
-  echo '[set_ssh_identities] FAILED'
+  echo '[ssh_identities_set] FAILED'
   exit 1
 end

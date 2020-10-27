@@ -1,21 +1,33 @@
 #!/usr/bin/fish
 
-cd set_globals
+cd git_email_set
 ./assert.fish
 
-cd ../unset_globals
+cd ../git_email_skip_invalid
 ./assert.fish
 
-cd ../set_git_email
+cd ../globals_skip_invalid
+./assert.fish
+
+cd ../globals_set
+./assert.fish
+
+cd ../globals_unset
 ./assert.fish
 
 cd ..
 echo 'y' | ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa 2>&1 >/dev/null
-cd set_ssh_identities
+cd ssh_identities_set
 ./assert.fish
 
-cd ../set_user_paths
+cd ../ssh_identities_skip_invalid
 ./assert.fish
 
-cd ../unset_user_paths
+cd ../user_paths_set
+./assert.fish
+
+cd ../user_paths_unset
+./assert.fish
+
+cd ../user_paths_skip_invalid
 ./assert.fish
