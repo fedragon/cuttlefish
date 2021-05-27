@@ -20,7 +20,7 @@ func Set(additions []string, deletions []string) []string {
 
 	for _, path := range additions {
 		if err := common.Validate(path); err == nil {
-			cmds = append(cmds, fmt.Sprintf("contains %v $fish_user_paths; or set --global --export --append fish_user_paths %v", path, path))
+			cmds = append(cmds, fmt.Sprintf("contains %v $fish_user_paths; or set --universal --append fish_user_paths %v", path, path))
 		}
 	}
 

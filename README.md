@@ -8,8 +8,8 @@ Switch environment according to current working directory. Heavily inspired by t
 
 Configure any combination of the following in a simple YAML file:
 - ssh identities
-- paths (to append to `$fish_user_paths`)
-- global variables
+- paths (to append to `$fish_user_paths`, which then becomes a _universal_ variable)
+- global (= universal) variables
 - git user email address
 
 Whenever you visit a directory containing a `.cuttlefish.yaml` file, its configuration is applied to your environment.
@@ -78,6 +78,8 @@ make build
 ```
 
 ### Test
+
+**Note:** This requires a running Docker daemon.
 
 ```
 make test
