@@ -18,6 +18,11 @@ checksum:
   name_template: 'checksums.txt'
 snapshot:
   name_template: "{{ incpatch .Version }}-next"
+includes:
+  - from_file:
+    path: ./Makefile
+  - from_file:
+    path: ./functions
 changelog:
   sort: asc
   filters:
