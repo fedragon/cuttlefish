@@ -1,3 +1,4 @@
-cuttlefish
 dist/
+**/cuttlefish
+binaries-*
 *.tar.gz
