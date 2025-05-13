@@ -6,7 +6,16 @@ import (
 	"github.com/fedragon/cuttlefish/common"
 )
 
-func SetIdentity(email string) string {
+func SetName(name string) string {
+	err := common.Validate(name)
+	if err != nil {
+		return ""
+	}
+
+	return fmt.Sprintf(`git config --global user.name "%v"`, name)
+}
+
+func SetEmail(email string) string {
 	err := common.Validate(email)
 	if err != nil {
 		return ""

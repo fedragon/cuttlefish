@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
@@ -35,7 +34,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	previousConfig, err := ioutil.ReadFile(TmpFile)
+	previousConfig, err := os.ReadFile(TmpFile)
 	if err != nil {
 		previousConfig = []byte("")
 	}
@@ -60,7 +59,7 @@ func main() {
 		}
 	}
 
-	if err = ioutil.WriteFile(TmpFile, []byte(config), 0644); err != nil {
+	if err = os.WriteFile(TmpFile, []byte(config), 0644); err != nil {
 		log.Fatal(err)
 	}
 
@@ -95,8 +94,7 @@ func withoutPreviousConfig() []string {
 	cmds := paths.Set(k.Strings("user_paths"), nil)
 	cmds = append(cmds, ssh.Set(k.Strings("ssh_identities"), nil)...)
 	cmds = append(cmds, globals.Set(k.StringMap("global_variables"), nil)...)
-
-	return append(cmds, git.SetIdentity(k.String("git_config.email")))
+	return append(cmds, git.SetName(k.String("git_config.name")), git.SetEmail(k.String("git_config.email")))
 }
 
 func withPreviousConfig(previous string) ([]string, error) {
@@ -106,7 +104,7 @@ func withPreviousConfig(previous string) ([]string, error) {
 	}
 
 	cmds := paths.Set(k.Strings("user_paths"), pk.Strings("user_paths"))
-	cmds = append(cmds, git.SetIdentity(k.String("git_config.email")))
+	cmds = append(cmds, git.SetName(k.String("git_config.name")), git.SetEmail(k.String("git_config.email")))
 	cmds = append(cmds, ssh.Set(k.Strings("ssh_identities"), pk.Strings("ssh_identities"))...)
 
 	vars := pk.StringMap("global_variables")

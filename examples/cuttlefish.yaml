@@ -1,4 +1,5 @@
 git_config:
+  name: Foo Bar
   email: foo@bar.com
   # no other options supported at the moment
 ssh_identities:
