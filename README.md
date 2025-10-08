@@ -2,7 +2,7 @@
 
 ![logo](logo.png)
 
-Switch environment according to current working directory. Heavily inspired by the amazing [direnv](https://direnv.net/) but not limited to environment variables and only targeting [fish shell](https://fishshell.com).
+Switch environment according to current working directory. Heavily inspired by the amazing [direnv](https://direnv.net/), but not limited to environment variables and only targeting [fish shell](https://fishshell.com).
 
 ## Features
 
@@ -10,7 +10,7 @@ Configure any combination of the following in a simple YAML file:
 - ssh identities
 - paths (to append to `$fish_user_paths`, which then becomes a _universal_ variable)
 - global (= universal) variables
-- git user email address
+- git user details (name, email address)
 
 Whenever you visit a directory containing a `.cuttlefish.yaml` file, its configuration is applied to your environment.
 
@@ -18,22 +18,22 @@ Whenever you visit a directory containing a `.cuttlefish.yaml` file, its configu
 
 ## Install
 
-**Note:** The script installs itself in your `~/.config/fish/config.fish`: before doing so, though, it will copy the original file to `~/.config/fish/config.fish_bck` so that it can be restored if needed (see `install` target in `Makefile` for more details).
+**Note:** The script installs itself in your `~/.config/fish/config.fish`: before doing so, though, it will copy the original file to `~/.config/fish/config.fish_bck` so that it can be restored for any reason (see `install` target in `Makefile` for more details).
 
 ### Option 1: Install released binaries
 
-Grab the binaries from the [releases page](https://github.com/fedragon/cuttlefish/releases), uncompress them and run
+Grab the binaries from the [releases page](https://github.com/fedragon/cuttlefish/releases), uncompress them and run e.g.
 
-```
+```shell
 cd cuttlefish-darwin64
 make install
 ```
 
 ### Option 2: Build from sources
 
-The installation requires Go 1.13+.
+The installation requires Go 1.25+.
 
-```
+```shell
 git clone https://github.com/fedragon/cuttlefish
 cd cuttlefish
 make
@@ -45,7 +45,8 @@ Create a `.cuttlefish.yaml` in every directory where you want to load a differen
 
 ```yaml
 git_config:
-  email: foo@bar.com # only this field is currently supported
+  name: John Doe
+  email: foo@bar.com
 ssh_identities:
   - ~/.ssh/id_rsa1
   - ~/.ssh/id_rsa2
@@ -64,7 +65,7 @@ Any combination of the above fields is possible and they're all optional. A comp
 
 ### Uninstall
 
-```
+```shell
 cd cuttlefish
 make uninstall
 ```
@@ -73,7 +74,7 @@ make uninstall
 
 ### Build
 
-```
+```shell
 make build
 ```
 
@@ -81,13 +82,13 @@ make build
 
 **Note:** This requires a running Docker daemon.
 
-```
+```shell
 make test
 ```
 
 ### Release
 
-```
+```shell
 make release
 ```
 
