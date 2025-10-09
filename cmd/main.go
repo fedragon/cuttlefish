@@ -45,6 +45,18 @@ func main() {
 	}
 
 	tmpFile := filepath.Join(tmpDir, lastSeenFileName)
+
+	stat, err := os.Stat(tmpFile)
+	if err != nil {
+		if os.IsNotExist(err) {
+			// ignore error: the last seen config will be nil
+		} else {
+			log.Fatal(err)
+		}
+	} else if stat.Mode().Perm() != 0644 {
+		log.Fatal(fmt.Errorf("invalid permissions for %v: they need to be 0644", tmpFile))
+	}
+
 	lastSeenConfigBytes, err := os.ReadFile(tmpFile)
 	if err != nil {
 		// ignore error: the last seen config will be nil
@@ -53,7 +65,7 @@ func main() {
 
 	if lastSeenConfigPath == currentConfigPath {
 		// nothing to do
-		os.Exit(1)
+		os.Exit(0)
 	}
 
 	currentConfig := koanf.New(".")
@@ -94,12 +106,17 @@ func find(homeDir, pwd string) (string, error) {
 	}
 
 	fullPath := filepath.Join(absPwd, configFileName)
-	if _, err := os.Stat(fullPath); errors.Is(err, fs.ErrNotExist) {
+	stat, err := os.Stat(fullPath)
+	if errors.Is(err, fs.ErrNotExist) {
 		if homeDir == absPwd {
 			return "", fmt.Errorf("no %v found in any parent (stopped at %v)", configFileName, homeDir)
 		}
 
 		return find(homeDir, filepath.Dir(absPwd))
+	}
+
+	if stat.Mode().Perm() != 0644 {
+		return "", fmt.Errorf("invalid permissions for %v: they need to be 0644", fullPath)
 	}
 
 	return fullPath, nil

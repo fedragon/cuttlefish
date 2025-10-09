@@ -41,7 +41,9 @@ make
 
 ### Usage
 
-Create a `.cuttlefish.yaml` in every directory where you want to load a different environment. The file should look like this:
+Create a `.cuttlefish.yaml` in every directory where you want to load a different environment and ensure it is only writable by the current user (`chmod 644 .cuttlefish.yaml`).
+
+The file should look like this:
 
 ```yaml
 git_config:
